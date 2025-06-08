@@ -1,7 +1,6 @@
-import { type CardProps } from "@/interfaces/index";
-import React from "react";
+import { type CardProps } from "@/interfaces";
 
-const Card: React.FC<CardProps> = ({ title, content }) => {
+const Card = ({ title, content }: CardProps) => {
   return (
     <div>
       <h2>{title}</h2>
