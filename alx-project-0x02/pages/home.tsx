@@ -1,6 +1,7 @@
 import Card from "@/components/common/Card";
 import React, { useState } from 'react';
 import PostModal from '@/components/common/PostModal'; 
+import Header from "@/components/layout/Header";
 
 const Home = () => {
   return(
@@ -22,7 +23,7 @@ const HomePage = () => {
     { title: string; content: string }[]
   >([]);
 
-  
+  <Header/>
   const handleOpenModal = () => setIsModalOpen(true);
   const handleCloseModal = () => setIsModalOpen(false);
 
