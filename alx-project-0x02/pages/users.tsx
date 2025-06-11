@@ -1,46 +1,37 @@
-import { GetStaticProps } from "next";
-import Header from "@/components/layout/Header";
-import UserCard from "@/components/common/UserCard";
-import { UserProps } from "@/interfaces";
+// pages/users.tsx
+import React from 'react';
+import UserCard from '@/components/common/UserCard';
+import type { UserProps } from '@/interfaces';
+import Header from '@/components/layout/Header';
 
 interface UsersPageProps {
   users: UserProps[];
 }
 
-const UsersPage = ({ users }: UsersPageProps) => {
+export default function UsersPage({ users }: UsersPageProps) {
   return (
     <>
       <Header />
-      <main className="p-6 space-y-4 bg-gray-50 min-h-screen">
-        <h1 className="text-3xl font-bold mb-4">Users</h1>
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+      <main className="p-6">
+        <h1 className="text-2xl font-bold mb-6">Users</h1>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {users.map((user) => (
             <UserCard key={user.id} {...user} />
+
           ))}
         </div>
       </main>
     </>
   );
-};
+}
 
-export const getStaticProps: GetStaticProps<UsersPageProps> = async () => {
-  try {
-    const response = await fetch("https://jsonplaceholder.typicode.com/users");
-    const users: UserProps[] = await response.json();
+export async function getStaticProps() {
+  const res = await fetch('https://jsonplaceholder.typicode.com/users');
+  const data = await res.json();
 
-    return {
-      props: {
-        users,
-      },
-    };
-  } catch (error) {
-    console.error("Error fetching users:", error);
-    return {
-      props: {
-        users: [],
-      },
-    };
-  }
-};
-
-export default UsersPage;
+  return {
+    props: {
+      users: data,
+    },
+  };
+}
