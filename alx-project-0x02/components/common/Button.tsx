@@ -1,5 +1,5 @@
 import React from 'react';
-import { ButtonProps } from '@/interfaces';
+import { type ButtonProps } from '@/interfaces';
 import clsx from 'clsx';
 
 const Button: React.FC<ButtonProps> = ({
